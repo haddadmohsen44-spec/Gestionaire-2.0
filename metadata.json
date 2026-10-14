@@ -1,0 +1,6 @@
+{
+  "name": "DentiDZ Pro - Logiciel Dentaire Algérien",
+  "description": "Système complet de gestion de cabinet dentaire pour l'Algérie: synchronisation réseau local multi-postes, odontogramme FDI interactif, gestion salle d'attente, bilan de caisse en DZD et ordonnances médicales.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
