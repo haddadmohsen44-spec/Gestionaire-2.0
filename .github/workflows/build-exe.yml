@@ -1,0 +1,32 @@
+name: Build Windows Executable
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  build-windows-exe:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Package Windows App (.exe)
+        run: npx electron-builder --win nsis portable
+
+      - name: Upload .exe as Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: Cabinet-Dentaire-Windows-App
+          path: dist/*.exe
