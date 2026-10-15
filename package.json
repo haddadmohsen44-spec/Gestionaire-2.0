@@ -1,14 +1,22 @@
 {
-  "name": "react-example",
+  "name": "dentidz-pro",
+  "productName": "DentiDZ Pro",
+  "version": "1.0.0",
+  "description": "Logiciel de gestion de cabinet dentaire professionnel pour l'Algérie",
+  "author": "Dr. Haddad Mohsen",
   "private": true,
-  "version": "0.0.0",
+  "main": "electron/main.cjs",
   "type": "module",
   "scripts": {
     "dev": "vite --port=3000 --host=0.0.0.0",
     "build": "vite build",
     "preview": "vite preview",
-    "clean": "rm -rf dist server.js",
-    "lint": "tsc --noEmit"
+    "clean": "rm -rf dist server.js release",
+    "lint": "tsc --noEmit",
+    "electron:start": "electron electron/main.cjs",
+    "electron:dev": "vite build && electron electron/main.cjs",
+    "build:exe": "vite build && electron-builder --win nsis portable",
+    "build:win": "vite build && electron-builder --win"
   },
   "dependencies": {
     "@google/genai": "^2.4.0",
@@ -30,9 +38,37 @@
     "@types/react": "^19.3.0",
     "@types/react-dom": "^19.3.0",
     "autoprefixer": "^10.4.21",
+    "electron": "^44.7.2",
+    "electron-builder": "^26.15.3",
     "esbuild": "^0.25.0",
     "tailwindcss": "^4.3.3",
     "tsx": "^4.21.0",
     "typescript": "^7.0.2"
+  },
+  "build": {
+    "appId": "dz.dentidz.pro",
+    "productName": "DentiDZ Pro",
+    "copyright": "Copyright © 2026 Dr. Haddad Mohsen - DentiDZ Pro",
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "dist/**/*",
+      "electron/**/*",
+      "package.json"
+    ],
+    "win": {
+      "target": [
+        "nsis",
+        "portable"
+      ]
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "shortcutName": "DentiDZ Pro",
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true
+    }
   }
 }
